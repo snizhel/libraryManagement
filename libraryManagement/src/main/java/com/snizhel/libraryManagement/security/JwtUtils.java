@@ -1,6 +1,5 @@
 package com.snizhel.libraryManagement.security;
 
-
 import com.snizhel.libraryManagement.service.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
@@ -34,6 +33,15 @@ public class JwtUtils {
         .setSubject((userPrincipal.getUsername()))
         .setIssuedAt(new Date())
         .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
+        .claim("roles", userPrincipal.getAuthorities())
+        .signWith(SignatureAlgorithm.HS512, jwtSecret)
+        .compact();
+  }
+  public String revokeToken(String token) {
+    return Jwts.builder()
+        .setSubject(getUserNameFromJwtToken(token))
+        .setIssuedAt(new Date())
+        .setExpiration(new Date((new Date()).getTime() - 1)).claim("revoked", true)
         .signWith(SignatureAlgorithm.HS512, jwtSecret)
         .compact();
   }

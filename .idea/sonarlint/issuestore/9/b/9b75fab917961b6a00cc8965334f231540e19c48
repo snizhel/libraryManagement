@@ -1,0 +1,19 @@
+
+E
+java:S5411#"*Use the primitive boolean expression here.(·†’ùüÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‰ª½ô
+L
+java:S3416"1Update this logger to use "BookController.class".(É§‚’ÿÿÿÿÿ
+[
+java:S4684""@Replace this persistent entity with a simple POJO or DTO object.(éÈªÿÿÿÿÿ
+A
+java:S1452""&Remove usage of generic wildcard type.(éÈªÿÿÿÿÿ
+[
+java:S4684,"@Replace this persistent entity with a simple POJO or DTO object.(ÏÙÔşÿÿÿÿ
+A
+java:S1452,"&Remove usage of generic wildcard type.(ÏÙÔşÿÿÿÿ
+\
+java:S1128
+"ARemove this unused import 'org.springframework.http.HttpHeaders'.(ãŸñ×úÿÿÿÿ
+E
+java:S1068"*Remove this unused "logger" private field.(É§‚’ÿÿÿÿÿ

@@ -1,6 +1,5 @@
 package com.snizhel.libraryManagement.security;
 
-
 import com.snizhel.libraryManagement.service.UserDetailsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
-  private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
   @Autowired private JwtUtils jwtUtils;
   @Autowired private UserDetailsServiceImpl userDetailsService;
+  private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
   @Override
   protected void doFilterInternal(
@@ -47,7 +46,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
   private String parseJwt(HttpServletRequest request) {
     String headerAuth = request.getHeader("Authorization");
     if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
-      return headerAuth.substring(7);
+      return headerAuth.substring(7, headerAuth.length());
     }
     return null;
   }

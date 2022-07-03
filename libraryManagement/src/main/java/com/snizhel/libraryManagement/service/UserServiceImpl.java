@@ -1,52 +1,47 @@
 package com.snizhel.libraryManagement.service;
 
-
-import com.snizhel.libraryManagement.model.Customer;
+import com.snizhel.libraryManagement.model.User;
 import com.snizhel.libraryManagement.repository.CustomerRepository;
+import com.snizhel.libraryManagement.security.AuthTokenFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
-import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**/
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
-  @Autowired
-  CustomerRepository userRepository;
+  private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
+  @Autowired CustomerRepository userRepository;
   @Autowired PasswordEncoder encoder;
 
   @Override
-  public List< Customer > findAll() {
-    List<Customer> users = new ArrayList<>();
-    userRepository.findAll().forEach(users::add);
-    return users;
+  public List<User> findAll() {
+    return userRepository.findAll();
   }
 
   @Override
-  public Optional<Customer> findUserByName(String name) {
+  public Optional<User> findUserByName(String name) {
     if (name == null || name.isEmpty()) {
-      userRepository.findAll().forEach(System.out::println);
-      throw new IllegalArgumentException("this name is not exist");
+      return Optional.empty();
     }
     return userRepository.findByName(name);
   }
 
   @Override
-  public Customer findById(Integer id) {
+  public User findById(Integer id) {
     return userRepository
         .findById(id)
         .orElseThrow(() -> new IllegalArgumentException("id user not found"));
   }
 
   @Override
-  public Customer save(Customer user) {
+  public User save(User user) {
     return userRepository.save(user);
   }
 
@@ -56,25 +51,23 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public void update(Integer id, Customer user) {
-    Customer user1 =
-        userRepository
-            .findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("User not found"));
-    user1.setName(user.getName());
-    user1.setPassword(encoder.encode(user.getPassword()));
-    user1.setBirthday(user.getBirthday());
-    user1.setAddress(user.getAddress());
-    user1.setPhone(user.getPhone());
-    userRepository.save(user1);
+  public List<User> searchByName(String name) {
+    if (name == null || name.isEmpty()) {
+      return findAll();
+    }
+    return userRepository.findByNameContaining(name);
   }
 
   @Override
-  public Customer login(String name, String password) {
-    Customer user = userRepository.findByNameAndPassword(name, password);
-    if (user == null) {
-      throw new IllegalArgumentException("login or password is incorrect");
-    }
-    return user;
+  public void update(Integer id, User user) {
+    User userToUpdate =
+        userRepository
+            .findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    userToUpdate.setName(user.getName());
+    userToUpdate.setBirthday(user.getBirthday());
+    userToUpdate.setAddress(user.getAddress());
+    userToUpdate.setPhone(user.getPhone());
+    userRepository.save(userToUpdate);
   }
 }

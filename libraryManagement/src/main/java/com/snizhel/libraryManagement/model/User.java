@@ -10,7 +10,7 @@ import java.util.Set;
     uniqueConstraints = {
       @UniqueConstraint(columnNames = "name"),
     })
-public class Customer {
+public class User {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "idcustomer", nullable = false)
@@ -31,6 +31,9 @@ public class Customer {
   @Column(name = "birthday", length = 45)
   private String birthday;
 
+  @Column(name = "status", nullable = false)
+  private EStatus status;
+
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
       name = "user_roles",
@@ -38,7 +41,7 @@ public class Customer {
       inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles = new HashSet<>();
 
-  public Customer(String name, String password, String phone, String address, String birthday) {
+  public User(String name, String password, String phone, String address, String birthday) {
     this.name = name;
     this.password = password;
     this.phone = phone;
@@ -46,7 +49,7 @@ public class Customer {
     this.birthday = birthday;
   }
 
-  public Customer() {}
+  public User() {}
 
   public String getBirthday() {
     return birthday;
@@ -102,6 +105,14 @@ public class Customer {
 
   public void setRoles(Set<Role> roles) {
     this.roles = roles;
+  }
+
+  public EStatus getStatus() {
+    return status;
+  }
+
+  public void setStatus(EStatus status) {
+    this.status = status;
   }
 
   // TODO Reverse Engineering! Migrate other columns to the entity

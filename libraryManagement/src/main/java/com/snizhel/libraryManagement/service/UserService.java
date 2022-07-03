@@ -1,24 +1,25 @@
 package com.snizhel.libraryManagement.service;
 
-
-
-import com.snizhel.libraryManagement.model.Customer;
+import com.snizhel.libraryManagement.model.User;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-  List< Customer > findAll();
+  List<User> findAll();
 
-  Optional<Customer> findUserByName( String name );
+  Optional<User> findUserByName(String name);
 
-  Customer findById( Integer id);
+  User findById(Integer id);
 
-  Customer save(Customer user);
+  User save(User user);
 
   void delete(Integer id);
 
-  void update(Integer id, Customer user);
+  List<User> searchByName(String name);
 
-  Customer login(String name, String password);
+  void update(Integer id, User user);
+
+
+
 }

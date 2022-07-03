@@ -1,5 +1,7 @@
 package com.snizhel.libraryManagement.payload;
 
+import com.snizhel.libraryManagement.model.Role;
+
 import javax.persistence.Column;
 import java.util.Set;
 
@@ -21,6 +23,9 @@ public class SignupRequest {
 
   @Column(length = 45)
   private String birthday;
+
+  @Column
+  private int status;
 
   public String getUsername() {
     return username;
@@ -68,5 +73,13 @@ public class SignupRequest {
 
   public void setBirthday(String birthday) {
     this.birthday = birthday;
+  }
+
+  public int getStatus() {
+    return status;
+  }
+
+  public void setStatus(int status) {
+    this.status = status;
   }
 }

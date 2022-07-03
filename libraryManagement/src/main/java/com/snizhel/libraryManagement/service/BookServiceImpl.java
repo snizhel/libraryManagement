@@ -1,15 +1,14 @@
 package com.snizhel.libraryManagement.service;
 
-
 import com.snizhel.libraryManagement.model.Book;
 import com.snizhel.libraryManagement.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -17,18 +16,21 @@ public class BookServiceImpl implements BookService {
   @Autowired private BookRepository bookRepository;
 
   @Override
-  public List< Book > findAll() {
-    List<Book> books = new ArrayList<>();
-    bookRepository.findAll().forEach(books::add);
-    return books;
+  public List<Book> findAll() {
+    return bookRepository.findAll();
   }
 
   @Override
-  public List<Book> findByTitle(String title) {
-    if (title == null || title.isEmpty()) {
+  public List<Book> findByTitleAndAuthor(String title) {
+    if (title == null) {
       return findAll();
     }
-    return bookRepository.findByTitle(title);
+    return bookRepository.findByTitleContaining(title);
+  }
+
+  @Override
+  public Book searchByTitle(String title) {
+    return bookRepository.findBookByTitle(title);
   }
 
   @Override
@@ -53,8 +55,12 @@ public class BookServiceImpl implements BookService {
     bookToUpdate.setTitle(book.getTitle());
     bookToUpdate.setAuthor(book.getAuthor());
     bookToUpdate.setPublisher(book.getPublisher());
-    bookToUpdate.setPrice(book.getPrice());
     bookToUpdate.setQuantity(book.getQuantity());
     bookRepository.save(bookToUpdate);
+  }
+
+  @Override
+  public Boolean checkIfBookExist(String title, String author) {
+    return bookRepository.existsByTitleAndAuthor(title, author);
   }
 }

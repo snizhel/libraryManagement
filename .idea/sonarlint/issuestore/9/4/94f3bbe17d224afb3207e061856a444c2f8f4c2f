@@ -1,0 +1,11 @@
+
+`	java:S112N"FDefine and throw a dedicated exception instead of using a generic one.(«©ÔÌüÿÿÿÿ
+`	java:S112Q"FDefine and throw a dedicated exception instead of using a generic one.(ÇÔâýùÿÿÿÿ
+a	java:S112X"FDefine and throw a dedicated exception instead of using a generic one.(Ø¢Å48ƒë‰ †0
+e
+java:S1192%"ODefine a constant instead of duplicating this literal "User not found" 4 times.(–ûƒ§
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(…É¶Žýÿÿÿÿ
+Q
+java:S3416"6Update this logger to use "AuthUserServiceImpl.class".(É§‚’ÿÿÿÿÿ
+E
+java:S1068"*Remove this unused "logger" private field.(É§‚’ÿÿÿÿÿ

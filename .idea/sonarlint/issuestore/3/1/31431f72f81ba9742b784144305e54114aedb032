@@ -1,0 +1,20 @@
+
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(‰ª½ô
+L
+java:S3416!"1Update this logger to use "AuthController.class".(É§‚’ÿÿÿÿÿ
+<
+java:S1452'"&Remove usage of generic wildcard type.(—­è€
+h
+java:S62042"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+a
+java:S16121"KReplace this lambda with method reference 'GrantedAuthority::getAuthority'.(¡©é½
+A
+java:S1452@"&Remove usage of generic wildcard type.(éã°éúÿÿÿÿ
+<
+java:S1452J"&Remove usage of generic wildcard type.(Ç§Žš
+A
+java:S1452V"&Remove usage of generic wildcard type.(ÚÛ´ùÿÿÿÿ
+A
+java:S1452\"&Remove usage of generic wildcard type.(±Æ®—úÿÿÿÿ
+<
+java:S1452e"&Remove usage of generic wildcard type.(ý±”Ê
