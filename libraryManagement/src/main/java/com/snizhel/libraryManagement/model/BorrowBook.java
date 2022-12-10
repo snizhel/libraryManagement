@@ -18,6 +18,17 @@ public class BorrowBook {
   @Column(name = "expired_term", length = 45)
   private String expiredTerm;
 
+
+
+  @Column(name = "status", length = 45)
+  private EStatus status;
+
+  public EStatus getStatus() {
+    return status;
+  }
+  public void setStatus(EStatus status) {
+    this.status = status;
+  }
   @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
   @JoinTable(
       name = "borrow_vouchers",

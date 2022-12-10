@@ -4,5 +4,7 @@ public enum EStatus {
   AVAILABLE,
   BORROWED,
   LOST,
-  BANNED
+  BANNED,
+  PENDING,
+
 }

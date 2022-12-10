@@ -6,9 +6,13 @@ import com.snizhel.libraryManagement.payload.BorrowBookDto;
 import java.util.List;
 
 public interface BorrowBookService {
-  BorrowBook createBorrowBook(BorrowBookDto borrowBookDto);
+    BorrowBook createBorrowBook(BorrowBookDto borrowBookDto);
 
-  BorrowBook deleteBorrowBook(Integer id);
+    BorrowBook deleteBorrowBook(Integer id);
 
-  List<BorrowBook> getAllBorrowBook();
+    BorrowBook setStatus(Integer id);
+
+    List<BorrowBook> getAllBorrowBook();
+
+    List<BorrowBook> getAllBorrowBookByUserId(Integer id);
 }
